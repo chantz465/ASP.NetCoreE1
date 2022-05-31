@@ -47,5 +47,26 @@ namespace ASP.NetCoreE1.Controllers
             return RedirectToAction("ViewProduct", new { id = product.ProductID });
         }
 
+        public IActionResult InsertProduct()
+        {
+            var prod = repo.AssignCategory();
+            return View(prod);
+        }
+
+        public IActionResult InsertProductToDatabase(Product productToInsert)
+        {
+            repo.InsertProduct(productToInsert);
+
+            return RedirectToAction("index");
+        }
+
+        public IActionResult DeleteProduct(Product product)
+        {
+            repo.DeleteProduct(product);
+
+            return RedirectToAction("index");
+
+        }
+
     }
 }
